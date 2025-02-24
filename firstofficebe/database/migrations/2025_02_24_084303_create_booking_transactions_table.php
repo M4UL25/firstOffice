@@ -16,7 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('phone_number');
             $table->string('booking_trx_id');
-            $table->foreignId('office_space_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('office_space_id')->constrained(
+                table: 'office_spaces',
+                indexName: 'booking_transactions_office_space_id'
+            )->cascadeOnDelete();
             $table->unsignedInteger('total_amount');
             $table->unsignedInteger('duration');
             $table->date('start_at');

@@ -17,7 +17,10 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('tumbnail');
             $table->text('about');
-            $table->foreignId('city_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('city_id')->constrained(
+                table: 'cities',
+                indexName: 'office_spaces_city_id'
+            )->cascadeOnDelete();
             $table->boolean('is_open');
             $table->boolean('is_full_booked');
             $table->unsignedInteger('price');
